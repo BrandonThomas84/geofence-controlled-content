@@ -72,7 +72,7 @@ export class ExampleMapControl {
     });
   };
 
-  handleRegisterClick = async (): Promise<void> => {
+  handleRegisterClick = (): void => {
     this.getUserLocation().then((userLocation) => {
       const isInside = this.isWithinGeofence(userLocation);
 
@@ -93,6 +93,7 @@ export class ExampleMapControl {
       });
   };
 }
+
 async function initMap(): Promise<void> {
   const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
     center: mapCenter,
