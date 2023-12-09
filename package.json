@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && npm run minify",
-    "minify": "npx uglifyjs build/index.js --compress --mangle --output public/index.min.js",
+    "minify": "npx uglifyjs public/index.js --compress --mangle --output public/index.min.js",
     "start-dev": "http-server -c-1"
   },
   "keywords": [],

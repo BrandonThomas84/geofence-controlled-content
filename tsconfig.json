@@ -9,7 +9,7 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "outDir": "./build",
+    "outDir": "./public",
   },
   "include": [
     "./src/**/*.ts"
