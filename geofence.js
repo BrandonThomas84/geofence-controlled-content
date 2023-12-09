@@ -72,7 +72,7 @@ const getUserLocation = () => {
     });
 };
 // Usage example:
-const apiKey = 'AIzaSyB1QuLA2O-jI_J8Y8kARo7wRDdnsklkfUU'; // Replace with your API key
+const apiKey = 'GOOGLE_API_KEY'; // Replace with your API key
 loadGoogleMaps(apiKey)
     .then(() => {
     // Map loaded, perform additional actions if needed
