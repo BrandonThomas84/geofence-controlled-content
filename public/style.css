@@ -34,3 +34,12 @@ h2 {
 #map {
   height: 100%;
 }
+.marker-label {
+  color: #000;
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
