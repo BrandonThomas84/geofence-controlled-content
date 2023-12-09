@@ -46,6 +46,8 @@ const geofenceCoordinates = [
   // Add more coordinates as needed for your geofence zones
 ];
 
+const maxDistance = 100;
+
 // Function to check if the user's location is within the geofence
 const isWithinGeofence = (userLocation: { lat: number; lng: number }): boolean => {
   const isWithin = geofenceCoordinates.some((coordinate) => {
@@ -53,7 +55,7 @@ const isWithinGeofence = (userLocation: { lat: number; lng: number }): boolean =
       new google.maps.LatLng(userLocation.lat, userLocation.lng),
       new google.maps.LatLng(coordinate.lat, coordinate.lng)
     );
-    return distance <= 1000; // Example: Check if within 1000 meters (adjust as needed)
+    return distance <= maxDistance; // Example: Check if within 1000 meters (adjust as needed)
   });
 
   return isWithin;

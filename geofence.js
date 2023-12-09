@@ -43,11 +43,12 @@ const geofenceCoordinates = [
     }
     // Add more coordinates as needed for your geofence zones
 ];
+const maxDistance = 100;
 // Function to check if the user's location is within the geofence
 const isWithinGeofence = (userLocation) => {
     const isWithin = geofenceCoordinates.some((coordinate) => {
         const distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(userLocation.lat, userLocation.lng), new google.maps.LatLng(coordinate.lat, coordinate.lng));
-        return distance <= 1000; // Example: Check if within 1000 meters (adjust as needed)
+        return distance <= maxDistance; // Example: Check if within 1000 meters (adjust as needed)
     });
     return isWithin;
 };
@@ -71,7 +72,7 @@ const getUserLocation = () => {
     });
 };
 // Usage example:
-const apiKey = 'GOOGLE API KEY'; // Replace with your API key
+const apiKey = 'AIzaSyB1QuLA2O-jI_J8Y8kARo7wRDdnsklkfUU'; // Replace with your API key
 loadGoogleMaps(apiKey)
     .then(() => {
     // Map loaded, perform additional actions if needed
