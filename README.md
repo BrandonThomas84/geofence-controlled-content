@@ -1,11 +1,21 @@
 # Simple Geofence Based Content Output
 
-The followign library is a simple Typescript module that accepts a list of geofence coordinates and will request the users location and then if the user is within the geofence will output the content. 
+The following is a simple example of how to use geofence coordinates to output content based on a users location. 
 
-You can configure both the geofence coordinates and the limit of the geofence in meters. The conditional output is currently just set as an alert that tells the user whether or not they are within the geofence but it can easily be adapted to be a form condition or prevent an API request for output.
+## How to Use:
+ - Create a google API key and add it to the `index.html` file.
+ - Open the `index.html` file in a browser.
+ - Click the button to allow the browser to access your location.
+ - If you are within the geofence coordinates you will see a success message.
 
+> You can use the following tool to generate your geofence coordinates: https://www.keene.edu/campus/maps/tool/
 
-## Requirements
- - You will need to setup a google API and add your key 
-
-> Use: https://www.keene.edu/campus/maps/tool/ to generate your geofence coordinates
+### Adding your own Coordinates:
+ - Create the coordinate set using the tool above.
+ - The last coordinate in the set should be the same as the first coordinate.
+ - Open the `src/index.ts` file in a text editor.
+ - Find the `geofence` variable and add your own coordinates.
+ - Remove any unwanted coordinates.
+ - Save the file.
+ - build the file using `npm run build`.
+ - Open the `index.html` file in a browser.
