@@ -9,14 +9,24 @@
 </head>
 
 <body>
-  <h2>Required Location</h2>
+  <h1>Test Location Based Functionality</h1>
   <div id="map-outer">
+    <h2>Required Location Map</h2>
     <div id="map"></div>
   </div>
-  <h2>Info</h2>
   <div id="info">
-    <button id="register-button">Register</button>
-    <div id="info-content"></div>
+    <div id="info-content">
+      <h2>How to use:</h2>
+      <p id="help">Click the button below to check if you are within the allowed region. If you are then a success message will appear below. If not try moving and trying again.</p>
+      <small id="help">If you cannot see any outlined regions on the map you are too far away. Try zooming out to identify allowed regions.</small>
+      <div id="success-message" class="hidden">
+        SUCCESS
+      </div>
+      <div id="error-message" class="hidden">
+        INVALID LOCATION
+      </div>
+      <button id="register-button">Click Here</button>
+    </div>
   </div>
   <script
       src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY&callback=initMap&v=weekly"
