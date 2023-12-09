@@ -50,11 +50,13 @@ const maxDistance = 100;
 
 // Function to check if the user's location is within the geofence
 const isWithinGeofence = (userLocation: { lat: number; lng: number }): boolean => {
-  const isWithin = geofenceCoordinates.some((coordinate) => {
+  const isWithin = geofenceCoordinates.every((coordinate) => {
     const distance = google.maps.geometry.spherical.computeDistanceBetween(
       new google.maps.LatLng(userLocation.lat, userLocation.lng),
       new google.maps.LatLng(coordinate.lat, coordinate.lng)
     );
+
+    console.log('Distance:', distance);
     return distance <= maxDistance; // Example: Check if within 1000 meters (adjust as needed)
   });
 
@@ -92,6 +94,7 @@ loadGoogleMaps(apiKey)
     // Fetch user's location and perform geofencing check
     getUserLocation()
       .then((userLocation) => {
+        console.log('User location:', {userLocation, geofenceCoordinates});
         const isInside = isWithinGeofence(userLocation);
         if (isInside) {
           // Allow user to view registration form
