@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" href="style.css">
-  <script type="module" src="dist/index.js"></script>
+  <script type="module" src="./index.min.js"></script>
 </head>
 
 <body>
   <h2>Reqired Location</h2>
-  <div id="required-location-map-outer">
-    <div id="required-location-map"></div>
+  <div id="map-outer">
+    <div id="map"></div>
   </div>
-  <h2>Your Location</h2>
-  <div id="your-location-map"></div>
   <h2>Info</h2>
   <div id="info">
     <button id="register-button">Register</button>
+    <div id="info-content"></div>
   </div>
+  <script
+      src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_API_KEY&callback=initMap&v=weekly"
+      defer
+    ></script>
 </body>
+
 </html>

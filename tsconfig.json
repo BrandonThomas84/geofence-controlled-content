@@ -1,19 +1,15 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext",
-      "DOM"
-    ],
-    // "module": "ESNext", // Specify module code generation
-    "outDir": "./dist", // Output compiled files to dist directory
-    "removeComments": true,
-    "target": "ES6",
-    "baseUrl": "./src",
-    // "rootDir": "./src", // Source files are in src directory
-    "strict": true, // Enable all strict type-checking options
-    "esModuleInterop": true, // Enables CommonJS/AMD/UMD modules to be compatible with ES6 modules
+    "module": "esnext",
+    "target": "esnext",
+    "strict": true,
+    "noImplicitAny": false,
+    "lib": ["esnext", "es6", "dom", "dom.iterable"],
     "moduleResolution": "Node",
-    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "outDir": "./build",
   },
   "include": [
     "./src/**/*.ts"
