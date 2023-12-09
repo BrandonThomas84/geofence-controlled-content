@@ -2,20 +2,23 @@
   "name": "geofence-content",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "minify": "terser geofence.js --output geofence.min.js"
+    "build": "tsc && npm run minify",
+    "minify": "terser src/*.js --output dist",
+    "start": "lite-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.2"
+    "@googlemaps/js-api-loader": "^1.16.2",
+    "@types/googlemaps": "^3.43.3"
   },
   "devDependencies": {
     "@types/google.maps": "^3.54.10",
+    "lite-server": "^2.6.1",
     "terser": "^5.26.0"
   }
 }
