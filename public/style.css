@@ -71,7 +71,23 @@ small {
   align-items: center;
 }
 
-#register-button {
+#ip-outer,
+#ip-fail {
+  padding: 2rem;
+  font-style: italic;
+  color: #999;
+  background-color: #000;
+}
+#ip {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: green;
+}
+#ip-fail {
+  color: red;
+}
+
+#button {
   padding: 1rem 2rem;
   font-size: 2rem;
   background: rgb(122, 212, 119); /* button color */
@@ -82,10 +98,10 @@ small {
   transition: all 0.3s ease;
   margin-bottom: 2rem;
 }
-#register-button:hover {
+#button:hover {
   background: rgb(32, 78, 31); /* darker button color on hover */
 }
-#register-button:active {
+#button:active {
   box-shadow: 0 2px rgb(32, 78, 31); /* smaller shadow when pressed */
   transform: translateY(3px); /* move button down when pressed */
 }

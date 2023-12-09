@@ -1,18 +1,10 @@
+// the map that will be used to display the example
+let map: google.maps.Map;
+
 // map zoom level (higher is closer)
 const mapZoomLevel = 15;
 
-// Define map center
-// Alaska
-// const mapCenter: google.maps.LatLngLiteral = {
-//   lng: -149.88937704734846,
-//   lat: 61.21683034247154
-// };
-// Chico
-const mapCenter: google.maps.LatLngLiteral = {
-  lng: -121.81460576381872,
-  lat: 39.75632866893142
-};
-
+// geofences
 const geofences: Map<string, google.maps.LatLngLiteral[]> = new Map();
 geofences.set("Alaska", [
   {
@@ -81,9 +73,10 @@ geofences.set("Paradise", [
   }
 ]);
 
-
-let map: google.maps.Map;
-
+/**
+ * Initializes the map
+ * @returns A promise that resolves when the map is initialized
+ */
 async function initMap(): Promise<void> {
   getUserLocation().then((userLocation) => {
     map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
@@ -119,6 +112,10 @@ async function initMap(): Promise<void> {
   });
 };
 
+/**
+ * Fetches the users location using the browser's geolocation API
+ * @returns The users location
+ */
 async function getUserLocation(): Promise<google.maps.LatLngLiteral> {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
@@ -140,6 +137,10 @@ async function getUserLocation(): Promise<google.maps.LatLngLiteral> {
   });
 };
 
+/**
+ * Generates a random color
+ * @returns A random color
+ */
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -149,6 +150,11 @@ function getRandomColor() {
   return color;
 };
 
+/**
+ * Checks if the user is within any of the geofences
+ * @param userLocation The users location
+ * @returns true if the user is within any of the geofences
+ */
 function isWithinGeofence(userLocation: google.maps.LatLngLiteral): boolean {
   let isInside = false;
   geofences.forEach((geofence, region) => {
@@ -163,12 +169,16 @@ function isWithinGeofence(userLocation: google.maps.LatLngLiteral): boolean {
   return isInside;
 };
 
-function handleRegisterClick(): void {
+/**
+ * Handles the button click. 
+ * If you are copying this code, you will want to replace this with your own logic.
+ */
+function handleButtonClick(): void {
   const success = document.getElementById("success-message");
   success?.classList.add("hidden");
+
   const error = document.getElementById("error-message");
   error?.classList.add("hidden");
-
 
   getUserLocation().then((userLocation) => {
     if (isWithinGeofence(userLocation)) {
@@ -181,8 +191,39 @@ function handleRegisterClick(): void {
   });
 };
 
-document.getElementById("register-button")?.addEventListener(
-  "click", () => { handleRegisterClick(); }
+/**
+ * Fetches the users IP address from Amazon
+ * This is only being used as a way to limit the API calls to the Google Maps API
+ */
+function setIPFromCloudflare(): void {
+  fetch("https://www.cloudflare.com/cdn-cgi/trace").then((res) => {
+    res.text().then((text) => {
+      const ip = text.split("\n")[2].split("=")[1];
+      const ipElement = document.getElementById("ip");
+      if (ipElement) {
+        ipElement.innerText = ip;
+      }
+      const ipOuterElement = document.getElementById("ip-outer");
+      if (ipOuterElement) {
+        ipOuterElement.classList.remove("hidden");
+      }
+    });
+  }).catch((error) => {
+    console.error('Failed to fetch the users IP', { error });
+    const ipOuterElement = document.getElementById("ip-fail");
+    if (ipOuterElement) {
+      ipOuterElement.classList.remove("hidden");
+    }
+  });
+};
+
+// Add event listener to button
+document.getElementById("button")?.addEventListener(
+  "click", () => { handleButtonClick(); }
 );
 
+// Add callback to the window so that the Google Maps API can call it after it loads
 window.initMap = initMap;
+
+// Get the users IP address and display it to them
+setIPFromCloudflare();
